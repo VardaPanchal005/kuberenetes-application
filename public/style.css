@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 20px;
+    line-height: 1.6;
+    background-color: #fff;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  
+  .profile-picture {
+    display: block;
+    width: 250px; /* Increased width for larger image */
+    height: 250px; /* Increased height to match new size */
+    border-radius: 0; /* Removed rounded corners */
+    object-fit: cover;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  
+  .info {
+    margin-left: 20px; /* Align info with the rest of the content */
+    margin-bottom: 10px; /* Add spacing between fields */
+    font-size: 16px;
+  }
+  
+  .info strong {
+    font-weight: bold;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+    margin-left: 20px; /* Align hr with the rest of the content */
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-left: 20px; /* Align button with the content */
+  }
+  
+  button:hover {
+    background-color: #f7f7f7;
+  }
+  
