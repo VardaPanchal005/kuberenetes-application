@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { MongoClient } = require('mongodb');
+const escape = require('escape-html');
 
 const app = express();
 const PORT = 3000;
@@ -48,11 +49,11 @@ app.get('/', (req, res) => {
     <body>
       <h1>User profile</h1>
       <img src="/image.png" class="profile-picture">
-      <div class="info">Name:<strong><span>${profile.name}</span></strong></div>
+      <div class="info">Name:<strong><span>${escape(profile.name)}</span></strong></div>
       <hr>
-      <div class="info">Email:<strong><span>${profile.email}</span></strong></div>
+      <div class="info">Email:<strong><span>${escape(profile.email)}</span></strong></div>
       <hr>
-      <div class="info">Interests:<strong><span>${profile.interests}</span></strong></div>
+      <div class="info">Interests:<strong><span>${escape(profile.interests)}</span></strong></div>
       <hr>
       <form action="/edit" method="GET">
         <button type="submit">Edit Profile</button>
@@ -77,11 +78,11 @@ app.get('/edit', (req, res) => {
       <h1>Edit Profile</h1>
       <form action="/update-profile" method="POST">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="${profile.name}" required>
+        <input type="text" id="name" name="name" value="${escape(profile.name)}" required>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="${profile.email}" required>
+        <input type="email" id="email" name="email" value="${escape(profile.email)}" required>
         <label for="interests">Interests:</label>
-        <input type="text" id="interests" name="interests" value="${profile.interests}" required>
+        <input type="text" id="interests" name="interests" value="${escape(profile.interests)}" required>
         <button type="submit">Update Profile</button>
       </form>
     </body>
