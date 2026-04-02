@@ -3,9 +3,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const { MongoClient } = require('mongodb');
 const escape = require('escape-html');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = 3000;
+
+// Rate limiter for routes that access the database
+const dataRouteLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -109,7 +116,7 @@ app.post('/update-profile', async (req, res) => {
 });
 
 // POST request to handle arbitrary data storage
-app.post('/data', async (req, res) => {
+app.post('/data', dataRouteLimiter, async (req, res) => {
   try {
     const data = req.body; // Capture data from request body
     const result = await collection.insertOne(data); // Insert into MongoDB
