@@ -98,7 +98,7 @@ app.get('/edit', (req, res) => {
 });
 
 // POST request to update the profile and save to MongoDB
-app.post('/update-profile', async (req, res) => {
+app.post('/update-profile', dataRouteLimiter, async (req, res) => {
   try {
     profile.name = req.body.name;
     profile.email = req.body.email;
